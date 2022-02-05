@@ -1,0 +1,26 @@
+{% extends "members/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+
+        <div class="content-section">
+          <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Update the details of team member</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Save</button>
+            </div>
+          </form>
+          <form method="POST" action="{% url 'member-delete' member.id %}">
+             {% csrf_token %}
+             <button class="btn btn-outline-info" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>  
+    </div>
+  </article>
+{% endblock content %}
