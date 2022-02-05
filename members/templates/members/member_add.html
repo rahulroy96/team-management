@@ -1,0 +1,15 @@
+{% extends "members/base.html" %}
+
+{% block content %}
+    <div class="content-section">
+
+        <form action="{% url 'member-add' %}" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form.as_p }}
+            </fieldset>
+            <input type="submit" value="Save">
+        </form>
+
+    </div>
+{% endblock content %}
