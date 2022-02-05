@@ -1,8 +1,19 @@
 {% extends "members/base.html" %}
 {% block content %}
-<div>
-	<h1>Team members</h1>
-	<br/>
-	You have {{members|length}} team members.
-</div>
+	<div>
+		<h1>Team members</h1>
+		<br/>
+		You have {{members|length}} team members.
+	</div>
+	{% for member in members %}
+    	<div class="media">
+	        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+	        <div class="media-body">
+	          <h2 class="account-heading">{{ member.f_name}} {{ member.l_name }}</h2>
+	          <p class="text-secondary">{{ member.phone_number }}</p>
+	          <p class="text-secondary">{{ member.email }}</p>
+	        </div>
+    	</div>
+    {% endfor %}
+
 {% endblock content %}
