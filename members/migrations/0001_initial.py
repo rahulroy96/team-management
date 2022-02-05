@@ -8,19 +8,47 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Member',
+            name="Member",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('f_name', models.CharField(max_length=100)),
-                ('l_name', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=254)),
-                ('phone_number', models.CharField(max_length=15, unique=True, validators=[django.core.validators.RegexValidator(regex='^\\+?1?\\d{8,15}$')])),
-                ('role', models.CharField(choices=[('Admin', 'Can delete members'), ('Regular', "Can't delete members")], default='Regular', max_length=7)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("f_name", models.CharField(max_length=100)),
+                ("l_name", models.CharField(max_length=100)),
+                ("email", models.EmailField(max_length=254)),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=15,
+                        unique=True,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                regex="^\\+?1?\\d{8,15}$"
+                            )
+                        ],
+                    ),
+                ),
+                (
+                    "role",
+                    models.CharField(
+                        choices=[
+                            ("Admin", "Can delete members"),
+                            ("Regular", "Can't delete members"),
+                        ],
+                        default="Regular",
+                        max_length=7,
+                    ),
+                ),
             ],
         ),
     ]
