@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 unique=True,
                 validators=[
                     django.core.validators.RegexValidator(
-                        regex="^\\+?1?\\d{3}-?\\d{3}-?\\d{4}$"
+                        regex="^\\d{3}-?\\d{3}-?\\d{4}$"
                     )
                 ],
             ),
