@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
+from .views import (
+	MemberListView, 
+
+)
 
 urlpatterns = [
-	path('', views.list, name='members-list'),
-	path('edit/', views.edit, name='members-edit'),
-	path('add/', views.add, name='members-add')
+	path('', MemberListView.as_view(), name='members-list'),
+
 ]
