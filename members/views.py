@@ -1,11 +1,16 @@
-from django.http import HttpResponse
+from django.views.generic import (
+    ListView,
+
+)
+from .models import Member
+# from .forms import MemberForm
+
+class MemberListView(ListView):
+	model = Member
+	template_name = 'members/members_list.html'
+	context_object_name = 'members'
+	ordering = ['-f_name']
 
 
-def list(request):
-    return HttpResponse("<h1>Team Members</h1>")
 
-def edit(request):
-    return HttpResponse("<h1>Edit Team Member</h1>")
 
-def add(request):
-    return HttpResponse("<h1>Add Team Member</h1>")
