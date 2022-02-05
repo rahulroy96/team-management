@@ -10,7 +10,7 @@ class Member(models.Model):
 
     # TODO: Improve the regex
     phone_number_regex = RegexValidator(
-        regex=r"^\+?1?\d{3}-?\d{3}-?\d{4}$"
+        regex=r"^\d{3}-?\d{3}-?\d{4}$"
     )  # allows only US styled phone numbers
     phone_number = models.CharField(
         validators=[phone_number_regex], max_length=15, unique=True
