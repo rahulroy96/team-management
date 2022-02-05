@@ -1,7 +1,9 @@
 {% extends "members/base.html" %}
 {% block content %}
 	<div>
-
+		<div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'member-add' %}">+</a>
+        </div>
 		<h1>Team members</h1>
 		<p class="text-secondary"> You have {{members|length}} team members. </p>
 	</div>
@@ -13,7 +15,6 @@
 	          <p class="text-secondary">{{ member.phone_number }}</p>
 	          <p class="text-secondary">{{ member.email }}</p>
 	        </div>
-
     </div>
     {% endfor %}
 
