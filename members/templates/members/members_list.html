@@ -1,19 +1,20 @@
 {% extends "members/base.html" %}
 {% block content %}
 	<div>
+
 		<h1>Team members</h1>
-		<br/>
-		You have {{members|length}} team members.
+		<p class="text-secondary"> You have {{members|length}} team members. </p>
 	</div>
 	{% for member in members %}
-    	<div class="media">
-	        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+	<div class="content-section" >
+	        <img class="rounded-circle account-img" src="">
 	        <div class="media-body">
-	          <h2 class="account-heading">{{ member.f_name}} {{ member.l_name }}</h2>
+	          <h2 class="account-heading">{{ member.f_name}} {{ member.l_name }} {% if member.is_admin %} (admin) {%endif%}</h2>
 	          <p class="text-secondary">{{ member.phone_number }}</p>
 	          <p class="text-secondary">{{ member.email }}</p>
 	        </div>
-    	</div>
+
+    </div>
     {% endfor %}
 
 {% endblock content %}
