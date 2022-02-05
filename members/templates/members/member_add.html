@@ -6,6 +6,7 @@
         <form action="{% url 'member-add' %}" method="post">
             {% csrf_token %}
             <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add a team member</legend>
                 {{ form.as_p }}
             </fieldset>
             <input type="submit" value="Save">
