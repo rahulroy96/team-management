@@ -4,11 +4,15 @@ from django.core.validators import RegexValidator
 
 class Member(models.Model):
 
-    name_regex = RegexValidator(
-        regex=r"^[A-Za-z ]+$"
+    name_regex = RegexValidator(regex=r"^[A-Za-z ]+$")
+    f_name = models.CharField(
+        max_length=100,
+        validators=[name_regex],
     )
-    f_name = models.CharField(max_length=100, validators=[name_regex],)
-    l_name = models.CharField(max_length=100, validators=[name_regex],)
+    l_name = models.CharField(
+        max_length=100,
+        validators=[name_regex],
+    )
     email = models.EmailField()
 
     # TODO: Improve the regex

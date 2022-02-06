@@ -7,18 +7,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('members', '0002_alter_member_phone_number'),
+        ("members", "0002_alter_member_phone_number"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='member',
-            name='f_name',
-            field=models.CharField(max_length=100, validators=[django.core.validators.RegexValidator(regex='^[A-Za-z ]+$')]),
+            model_name="member",
+            name="f_name",
+            field=models.CharField(
+                max_length=100,
+                validators=[
+                    django.core.validators.RegexValidator(regex="^[A-Za-z ]+$")
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='member',
-            name='l_name',
-            field=models.CharField(max_length=100, validators=[django.core.validators.RegexValidator(regex='^[A-Za-z ]+$')]),
+            model_name="member",
+            name="l_name",
+            field=models.CharField(
+                max_length=100,
+                validators=[
+                    django.core.validators.RegexValidator(regex="^[A-Za-z ]+$")
+                ],
+            ),
         ),
     ]
