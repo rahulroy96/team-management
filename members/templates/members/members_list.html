@@ -1,33 +1,50 @@
 {% extends "members/base.html" %}
-{% block content %}
-	<div class="container">
-		<div class="row">
-			<h1>Team members  </h1>
-			&nbsp;&nbsp;
-			<div class="col-md-8">
-	            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'member-add' %}">+</a>
-	        </div>
-		</div>
-		<p class="text-secondary"> You have {{members|length}} team member{% if members|length != 1 %}s{% endif %}. </p>
-	</div>
-	<main role="main" class="container">
-	    <div class="row">
-	        <div class="col-md-4">
-				{% for member in members %}
-					<div class="member-item content-section" >
-				    	<a class="fill-div" href="{% url 'member-edit' member.id%}">
-					   		<div class='row'>
-					          <h4 class="member-name">{{ member.f_name}} {{ member.l_name }}</h4>
-					          {% if member.is_admin %} <p class="text-secondary">(admin) </p>{%endif%}
-					        </div>
-					          <p class="text-secondary">{{ member.phone_number }}</p>
-					          <p class="text-secondary">{{ member.email }}</p>
-					        
-				    	</a>
-				    </div>
-			    {% endfor %}
-	    	</div>
-	    </div>
-    </main>
+
+{% block content%}
+
+<div class="d-flex" style="align-items: center;">
+<h1>Team Members</h1>
+<a class="btn btn-secondary btn-lg" style="margin-left: auto;" href="{% url 'member-add' %}">+</a>
+</div>
+<p class="text-secondary"> You have {{members|length}} team member{% if members|length != 1 %}s{% endif %}. </p>
+{% for member in members %}
+<article class="media content-section">
+    <div class="media-body">
+        <a class="article-title" href="{% url 'member-edit' member.id %}">
+        	<div class="row member-name">
+	        	<h2>{{ member.f_name}} {{ member.l_name }}</h2>
+	        	{% if member.is_admin %} 
+	        	<p class="text-secondary">(admin) </p>{%endif%}
+        	</div>
+			<div class="article-metadata">
+	            <div>
+	                <small class="text-muted">{{ member.phone_number }}</small>
+	            </div>
+	            <small class="text-muted">{{ member.email }}</small>
+        	</div>
+        </a>
+    </div>
+</article>
+{% endfor %}
+
+{% if is_paginated %}
+{% if page_obj.has_previous %}
+<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %}
+<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+<a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+{% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+{% endif %}
+{% endif %}
 
 {% endblock content %}
