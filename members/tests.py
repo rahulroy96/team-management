@@ -73,3 +73,24 @@ class MemberListViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "You have 1 team member.")
         self.assertQuerysetEqual(response.context["members"], [member])
+
+    def test_two_regular_members(self):
+        member1 = create_member(role="Regular")
+        member1 = create_member(role="Regular")
+        response = self.client.get(reverse("members-list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "You have 2 team members.")
+        self.assertNotContains(response, "admin")
+        self.assertQuerysetEqual(response.context["members"], [member1, member1])
+
+    def test_two_admin_members(self):
+        member1 = create_member(role="Admin")
+        member1 = create_member(role="Admin")
+        response = self.client.get(reverse("members-list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "You have 2 team members.")
+        self.assertContains(response, "admin")
+        self.assertQuerysetEqual(response.context["members"], [member1, member1])
+
+
+
