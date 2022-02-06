@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, RadioSelect
 from .models import Member
 
 # Create the Member Form
@@ -6,6 +6,9 @@ class MemberForm(ModelForm):
     class Meta:
         model = Member
         fields = ["f_name", "l_name", "email", "phone_number", "role"]
+        widgets = {
+            'role': RadioSelect(),
+        }
 
     def clean_phone_number(self):
         # add '-' to the phone numbers if user didn't enter
