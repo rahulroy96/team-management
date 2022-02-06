@@ -1,6 +1,6 @@
 A simple team management web application developed in django with features like adding a member to team, editing the details of the members or deleting the members. Each member has a first name, last name, email, phone number and a role. There are two roles admin can delete other members and regular who cant delete.
 
-# Setting up the environment
+## Setting up the environment
 You need to have [python](https://www.python.org/downloads/), and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
 
 1.  Open a new terminal
@@ -32,7 +32,7 @@ You need to have [python](https://www.python.org/downloads/), and [git](https://
       pip install -r requirements.txt
     ```
     
-# Running the application
+## Running the application
 1.  Before running the application, we first need to create the tables required. This can be done using the migrate command from django
     ```
       python manage.py migrate
@@ -41,3 +41,7 @@ You need to have [python](https://www.python.org/downloads/), and [git](https://
     ```
       python manage.py runserver
     ```
+## Running the test cases
+   We can run the test cases using the below command
+
+    python manage.py test members
