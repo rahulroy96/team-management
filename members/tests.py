@@ -76,21 +76,21 @@ class MemberListViewTests(TestCase):
 
     def test_two_regular_members(self):
         member1 = create_member(role="Regular")
-        member1 = create_member(role="Regular")
+        member2 = create_member(role="Regular", phone_number='1234567890')
         response = self.client.get(reverse("members-list"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "You have 2 team members.")
         self.assertNotContains(response, "admin")
-        self.assertQuerysetEqual(response.context["members"], [member1, member1])
+        self.assertQuerysetEqual(response.context["members"], [member1, member2])
 
     def test_two_admin_members(self):
         member1 = create_member(role="Admin")
-        member1 = create_member(role="Admin")
+        member2 = create_member(role="Admin", phone_number='1234567890')
         response = self.client.get(reverse("members-list"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "You have 2 team members.")
         self.assertContains(response, "admin")
-        self.assertQuerysetEqual(response.context["members"], [member1, member1])
+        self.assertQuerysetEqual(response.context["members"], [member1, member2])
 
 
 
